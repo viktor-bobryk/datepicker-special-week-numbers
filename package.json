@@ -2,7 +2,7 @@
   "author": "ViktorBobryk",
   "name": "datepicker-special-week-numbers",
   "description": "A simple and reusable datepicker component for React with special week numbers",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
   "homepage": "",
   "main": "dist/index.js",

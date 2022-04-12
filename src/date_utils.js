@@ -213,12 +213,12 @@ export function getWeek(date) {
   };
   const year = date.getFullYear();
 
-  let number = _getWeek(date) - 1;
+  let number = _getWeek(date);
 
-  if (number === 0 && isLeapYear(year)) {
+  if (number === 1 && isLeapYear(year)) {
     number = 53;
-  } else if (number === 0 && !isLeapYear(year)) {
-    number = 52;
+  } else if (!isLeapYear(year)) {
+    number -= 1;
   }
 
   return number;
