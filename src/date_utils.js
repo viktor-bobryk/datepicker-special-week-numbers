@@ -18,7 +18,6 @@ import getMinutes from "date-fns/getMinutes";
 import getHours from "date-fns/getHours";
 import getDay from "date-fns/getDay";
 import getDate from "date-fns/getDate";
-import { getWeek as _getWeek } from "date-fns";
 import getMonth from "date-fns/getMonth";
 import getQuarter from "date-fns/getQuarter";
 import getYear from "date-fns/getYear";
@@ -208,20 +207,16 @@ export {
 };
 
 export function getWeek(date) {
-  const isLeapYear = (year) => {
-    return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
-  };
-  const year = date.getFullYear();
-
-  let number = _getWeek(date);
-
-  if (number === 1 && isLeapYear(year)) {
-    number = 53;
-  } else if (!isLeapYear(year)) {
-    number -= 1;
+  if (!date) return "";
+  const tdt = new Date(date.valueOf());
+  const day = (date?.getDay() + 7) % 7;
+  tdt.setDate(tdt.getDate() - day + 3);
+  const firstThursday = tdt.valueOf();
+  tdt.setMonth(0, 1);
+  if (tdt.getDay() !== 4) {
+    tdt.setMonth(0, 1 + ((4 - tdt.getDay() + 7) % 7));
   }
-
-  return number;
+  return 1 + Math.ceil((firstThursday - tdt) / 604800000);
 }
 
 export function getDayOfWeekCode(day, locale) {
