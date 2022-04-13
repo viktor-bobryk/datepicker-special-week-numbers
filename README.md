@@ -1,6 +1,6 @@
 # React Date Picker
 
-A simple and reusable datepicker component for React ([Demo](https://reactdatepicker.com/))
+My custom version of react-datepicker with special week numbers. Original => ([Demo](https://reactdatepicker.com/))
 
 ![](https://cloud.githubusercontent.com/assets/1412392/5339491/c40de124-7ee1-11e4-9f07-9276e2545f27.png)
 
@@ -166,4 +166,4 @@ The examples are hosted within the docs folder and are ran in the simple app tha
 
 ## License
 
-Licensed under MIT license, see [LICENSE](LICENSE) for the full license.
+Copyright (c) 2014-2021 HackerOne Inc. and individual contributors. Licensed under MIT license, see [LICENSE](LICENSE) for the full license.
