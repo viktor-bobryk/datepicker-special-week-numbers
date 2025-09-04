@@ -1,16 +1,17 @@
 () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const ExampleCustomTimeInput = ({ date, value, onChange }) => (
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const ExampleCustomTimeInput = ({ value, onChange }) => (
     <input
       value={value}
       onChange={(e) => onChange(e.target.value)}
+      onClick={(e) => e.target?.focus()}
       style={{ border: "solid 1px pink" }}
     />
   );
   return (
     <DatePicker
-      selected={startDate}
-      onChange={(date) => setStartDate(date)}
+      selected={selectedDate}
+      onChange={(date) => setSelectedDate(date)}
       showTimeInput
       customTimeInput={<ExampleCustomTimeInput />}
     />
