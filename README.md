@@ -1,11 +1,6 @@
 # React Date Picker
 
-[![npm version](https://badge.fury.io/js/react-datepicker.svg)](https://badge.fury.io/js/react-datepicker)
-[![Test suite](https://github.com/Hacker0x01/react-datepicker/actions/workflows/test.yml/badge.svg)](https://github.com/Hacker0x01/react-datepicker/actions/workflows/test.yml)
-[![codecov](https://codecov.io/gh/Hacker0x01/react-datepicker/branch/main/graph/badge.svg)](https://codecov.io/gh/Hacker0x01/react-datepicker)
-[![Downloads](https://img.shields.io/npm/dm/react-datepicker.svg)](https://npmjs.org/package/react-datepicker)
-
-A simple and reusable Datepicker component for React ([Demo](https://reactdatepicker.com/))
+My custom version of react-datepicker with special week numbers. Original => ([Demo](https://reactdatepicker.com/))
 
 ![](https://cloud.githubusercontent.com/assets/1412392/5339491/c40de124-7ee1-11e4-9f07-9276e2545f27.png)
 
@@ -36,7 +31,12 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const Example = () => {
   const [startDate, setStartDate] = useState(new Date());
-  return <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />;
+  return (
+    <DatePicker
+      selected={startDate}
+      onChange={(date: Date) => setStartDate(date)}
+    />
+  );
 };
 ```
 
@@ -60,14 +60,19 @@ You can use `onSelect` event handler which fires each time some calendar date ha
 
 `onClickOutside` handler may be useful to close datepicker in `inline` mode
 
-See [here](https://github.com/Hacker0x01/react-datepicker/blob/main/docs/datepicker.md) for a full list of props that may be passed to the component. Examples are given on the [main website](https://hacker0x01.github.io/react-datepicker).
+See [here](https://github.com/Hacker0x01/react-datepicker/blob/master/docs/datepicker.md) for a full list of props that may be passed to the component. Examples are given on the [main website](https://hacker0x01.github.io/react-datepicker).
 
 ### Time picker
 
 You can also include a time picker by adding the showTimeSelect prop
 
 ```js
-<DatePicker selected={date} onChange={handleDateChange} showTimeSelect dateFormat="Pp" />
+<DatePicker
+  selected={date}
+  onChange={handleDateChange}
+  showTimeSelect
+  dateFormat="Pp"
+/>
 ```
 
 Times will be displayed at 30-minute intervals by default (default configurable via timeIntervals prop)
@@ -76,7 +81,7 @@ More examples of how to use the time picker are given on the [main website](http
 
 ### Localization
 
-The date picker relies on [date-fns internationalization](https://date-fns.org/v3.3.1/docs/I18n) to localize its display components. By default, the date picker will use the locale globally set, which is English. Provided are 3 helper methods to set the locale:
+The date picker relies on [date-fns internationalization](https://date-fns.org/v2.0.0-alpha.18/docs/I18n) to localize its display components. By default, the date picker will use the locale globally set, which is English. Provided are 3 helper methods to set the locale:
 
 - **registerLocale** (string, object): loads an imported locale object from date-fns
 - **setDefaultLocale** (string): sets a registered locale as the default for all datepicker instances
@@ -84,7 +89,7 @@ The date picker relies on [date-fns internationalization](https://date-fns.org/v
 
 ```js
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
-import { es } from 'date-fns/locale/es';
+import es from 'date-fns/locale/es';
 registerLocale('es', es)
 
 <DatePicker
@@ -123,19 +128,17 @@ Unfortunately, it is difficult to support legacy browsers while maintaining our 
 
 ## Local Development
 
-The `main` branch contains the latest version of the Datepicker component.
+The `master` branch contains the latest version of the Datepicker component.
 
 To begin local development:
 
-1. Run `yarn install` from project root
-2. Run `yarn build` from project root
-3. Run `yarn start` from project root
+1. `yarn install`
+2. `yarn build-dev`
+3. `yarn start`
 
-The last step starts documentation app as a simple webserver on http://localhost:5173.
+The last step starts documentation app as a simple webserver on http://localhost:3000.
 
 You can run `yarn test` to execute the test suite and linters. To help you develop the component we’ve set up some tests that cover the basic functionality (can be found in `/tests`). Even though we’re big fans of testing, this only covers a small piece of the component. We highly recommend you add tests when you’re adding new functionality.
-
-Please refer to `CONTRIBUTING.md` file for more details about getting set up.
 
 ### The examples
 
@@ -150,11 +153,9 @@ The examples are hosted within the docs folder and are ran in the simple app tha
 - _Up_: Move to the previous week.
 - _Down_: Move to the next week.
 - _PgUp_: Move to the previous month.
-- _Shift+PgUp_: Move to the same day and month of the previous year. If that day does not exist, moves focus to the last day of the month.
 - _PgDn_: Move to the next month.
-- _Shift+PgDn_: Move to the same day and month of the next year. If that day does not exist, moves focus to the last day of the month.
-- _Home_: Move to the first day (e.g Sunday) of the current week.
-- _End_: Move to the last day (e.g. Saturday) of the current week.
+- _Home_: Move to the previous year.
+- _End_: Move to the next year.
 - _Enter/Esc/Tab_: close the calendar. (Enter & Esc calls preventDefault)
 
 #### For month picker
@@ -165,4 +166,4 @@ The examples are hosted within the docs folder and are ran in the simple app tha
 
 ## License
 
-Copyright (c) 2014-2025 HackerOne Inc. and individual contributors. Licensed under MIT license, see [LICENSE](LICENSE) for the full license.
+Copyright (c) 2014-2021 HackerOne Inc. and individual contributors. Licensed under MIT license, see [LICENSE](LICENSE) for the full license.
